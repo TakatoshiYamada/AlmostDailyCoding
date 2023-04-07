@@ -13,3 +13,21 @@ def heap_sort(arr)
   end
   arr
 end
+
+def heapify(arr, length, index)
+  largest = index
+  left = 2 * index + 1
+  right = 2 * index + 2
+
+  if left < length && arr[right] > arr[largest]
+    largest = left
+  end
+
+  if right < length && arr[largest]
+     
+    = arr[largest], arr[index]
+    heapify(arr, length, largest)
+  end
+end
+
+args = ARGV.map {|i| i.to_i}

@@ -3,12 +3,12 @@ def heap_sort(arr)
 
   # ヒープ構造の作成
   (n - 1).downto(0) do | i |
-    heapify(arr, n, 1)
+    heapify(arr, n, i)
   end
 
   # ヒープ構造から最大値を取り出して、ソート済みデータに追加する
-  (n - 1).downto(0) do |i|
-    arr[0], arr[[i]] = arr[i], arr[0]
+  (n - 1).downto(1) do |i|
+    arr[0], arr[i] = arr[i], arr[0]
     heapify(arr, i, 0)
   end
   arr
@@ -19,15 +19,19 @@ def heapify(arr, length, index)
   left = 2 * index + 1
   right = 2 * index + 2
 
-  if left < length && arr[right] > arr[largest]
+  if left < length && arr[left] > arr[largest]
     largest = left
   end
 
-  if right < length && arr[largest]
-     
-    = arr[largest], arr[index]
+  if right < length && arr[right] > arr[largest]
+    largest = right
+  end
+
+  if largest != index
+     arr[index], arr[largest] = arr[largest], arr[index]
     heapify(arr, length, largest)
   end
 end
 
-args = ARGV.map {|i| i.to_i}
+args = ARGV.map(&:to_i)
+puts "heap_sort:#{heap_sort(args)}"

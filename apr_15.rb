@@ -3,24 +3,14 @@
 def quick_sort(arr)
   return arr if arr.length <= 1
 
-  # pivotを配列から取り出す
+  # pivotを配列からランダムに選択し、削除
   pivot = arr.delete_at(rand(arr.length))
 
-  # pivotより小さい値を格納する配列
-  less = []
+  # ピボットより小さい値と大きな値を分ける
+  less, greater = arr.partition { |i| i <= pivot }
 
-  # pivotより大きい値を格納する配列
-  greater = []
-
-  arr.each do |i|
-    if i <= pivot
-      less << i
-    else
-      greater << i
-    end
-  end
-
-  return quick_sort(less) + [pivot] + quick_sort(greater)
+  # 再帰的にソートし、結果を連結
+  quick_sort(less) + [pivot] + quick_sort(greater)
 end
 
 input = gets.split(' ').map(&:to_i)

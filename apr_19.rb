@@ -17,7 +17,7 @@ def binary_search(arr, target)
     # 中央のインデックス
     mid = (left + right) / 2
     if arr[mid] == target
-      return mid
+      mid
     elsif arr[mid] < target
       # 中央より左側のインデックスを更新
       # q: なぜ、mid +1 なのか？

@@ -24,8 +24,10 @@ class Graph
     puts start_node
 
     # 隣接ノードを探索
-    @adjacency_list[start_node].each do |neighbor|
-      dfs(neighbor, visited)
+    if @adjacency_list[start_node]
+       @adjacency_list[start_node].each do |neighbor|
+         dfs(neighbor, visited)
+       end
     end
   end
 end

@@ -27,7 +27,7 @@ def find_closest_centroid(point, centroids)
 end
 
 # K-means algorithm
-def k-means(data, k, max_iterations = 100)
+def k_means(data, k, max_iterations = 100)
   # Initialize centroids randomly
   centroids = data.sample(k)
 
@@ -42,7 +42,7 @@ def k-means(data, k, max_iterations = 100)
     # Update centroids by computing the mean of the data points in each cluster
     updated_centroids = []
     clusters.each do |centroid_index, points|
-      mean = points.inject { |sum, point| sum + point } / points.size.to_f # Vector
+      mean = points.inject(Vector[0, 0]) { |sum, point| sum + Vector[*point] } / points.size.to_f
       updated_centroids[centroid_index] = mean.to_a
     end
 
@@ -52,6 +52,8 @@ def k-means(data, k, max_iterations = 100)
     # Update centroids
     centroids = updated_centroids
   end
+
+  centroids
 end
 
 # Sample data
